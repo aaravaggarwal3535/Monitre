@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// App.jsx
+import React, { useEffect, useState } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import Header from "./Components/Header/Header"; // Make sure Header is set up to conditionally render content based on login state
+import { auth } from "./firebase"; // Import Firebase auth
+import { onAuthStateChanged } from "firebase/auth"; // Import auth state change listener
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser); // Update user when authentication state changes
+    });
+
+    return () => unsubscribe(); // Cleanup the listener when the component unmounts
+  }, []);
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/login"); // Redirect to login if not logged in
+    }
+  }, [user, navigate]);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="min-h-screen flex flex-wrap content-between">
+      <div className="w-full block">
+        {/* Pass user to Header component to manage display of profile picture or login button */}
+        <Header user={user} />
+        <main className="flex-grow p-4 bg-white pt-16">
+          {/* Render nested routes like Home, About, etc. */}
+          <Outlet />
+        </main>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
