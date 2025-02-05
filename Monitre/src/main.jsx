@@ -3,20 +3,20 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App.jsx';
-import Home from './Components/Pages/Home.jsx';
-import Login from './Components/Pages/Login.jsx';
-import Dashboard from './Components/Pages/Dashboard.jsx'; // Create this as a new page for logged-in users
+import Home from './Components/Pages/Home.jsx'; // Import Home page
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Login from './Components/Pages/Login.jsx'; // Import Login page
+import Dashboard from './Components/Pages/Dashboard.jsx'; // Import Dashboard
 
 // Router setup
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,  // App will handle the layout (Header, Footer, and Outlet)
+    element: <App />,  // App will handle layout
     children: [
-      { path: '/', element: <Home /> }, // Home route
+      { path: '/', element: <Home /> }, // Default route is Home
       { path: '/login', element: <Login /> }, // Login route
-      { path: '/dashboard', element: <Dashboard /> }, // Protected route for logged-in users
+      { path: '/dashboard', element: <Dashboard /> }, // Dashboard route
     ],
   },
 ]);

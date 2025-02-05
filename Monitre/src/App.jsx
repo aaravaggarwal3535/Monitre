@@ -1,36 +1,27 @@
 // App.jsx
-import React, { useEffect, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
-import Header from "./Components/Header/Header"; // Make sure Header is set up to conditionally render content based on login state
-import { auth } from "./firebase"; // Import Firebase auth
-import { onAuthStateChanged } from "firebase/auth"; // Import auth state change listener
+import React, { useState, useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
+import Header from './Components/Header/Header';
+import { auth } from './firebase'; // Import auth from firebase
+import { onAuthStateChanged } from 'firebase/auth'; // To track auth state
 
 function App() {
   const [user, setUser] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser); // Update user when authentication state changes
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user); // Update user state on login/logout
     });
 
-    return () => unsubscribe(); // Cleanup the listener when the component unmounts
+    return () => unsubscribe(); // Clean up the subscription when component unmounts
   }, []);
 
-  useEffect(() => {
-    if (!user) {
-      navigate("/login"); // Redirect to login if not logged in
-    }
-  }, [user, navigate]);
-
   return (
-    <div className="min-h-screen flex flex-wrap content-between">
-      <div className="w-full block">
-        {/* Pass user to Header component to manage display of profile picture or login button */}
-        <Header user={user} />
-        <main className="flex-grow p-4 bg-white pt-16">
-          {/* Render nested routes like Home, About, etc. */}
-          <Outlet />
+    <div className='min-h-screen flex flex-wrap content-between'>
+      <div className='w-full block'>
+        <Header user={user} /> {/* Pass user to Header */}
+        <main className='flex-grow p-4 bg-white pt-16'>
+          <Outlet /> {/* Render nested routes like Home, About, etc. */}
         </main>
       </div>
     </div>
