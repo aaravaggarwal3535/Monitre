@@ -16,7 +16,7 @@ function Home() {
         <div className="bg-gray-100 mt-[50px] rounded-lg h-[30vh] w-[120vh] mx-5 md:mx-5 text-center flex flex-col justify-center items-center space-y-4">
           {/* Previous content */}
           <p className="px-4 md:px-16">
-            Take control of your money like never before. With Monetre, managing
+            Take control of your money like never before. With Monitre, managing
             your finances is simple, smart, and stress-free. Track your
             expenses, grow your savings, and make informed investment decisions—
             all in one place. Whether you're planning for the future or
