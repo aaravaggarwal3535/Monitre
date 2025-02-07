@@ -20,22 +20,36 @@ const Dashboard = () => {
                 description="Save today, secure tomorrow—building your future, one step at a time."
               />
             </Link>
+            <Link>
             <Card
               title="Investment"
               description="Invest smart, save big—secure your future with just a click!"
-            />
+              />
+              </Link>
+            <Link>
             <Card
               title="Goals"
               description="Dream big, track your goals, and turn them into reality."
-            />
+              />
+              </Link>
+            <Link>
             <Card
               title="Banking"
               description="Step into the world of easy banking—tap to begin!"
-            />
+              />
+              </Link>
+            <Link>
             <Card
               title="Track"
               description="Keep your progress at your fingertips—track it all with ease!"
-            />
+              />
+              </Link>
+            <Link to={'/personal-details'}>
+            <Card
+              title="Personal Details"
+              description="Details saved by the user."
+              />
+              </Link>
           </div>
         </div>
 

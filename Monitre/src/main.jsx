@@ -8,6 +8,7 @@ import Login from "./Components/Pages/Login.jsx";
 import Dashboard from "./Components/Pages/Dashboard.jsx";
 import Signup from "./Components/Pages/Signup.jsx";
 import ConfirmEmail from "./Components/Pages/ConfirmEmail.jsx";
+import PersonalDetails from "./Components/Pages/PersonalDetails.jsx";
 // import ProtectedRoute from "./Components/ProtectedRoute.js";
 
 // Router setup
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
       { path: "/signup", element: <Signup /> },
       { path: "/confirm-email", element: <ConfirmEmail /> },
       { path: "/dashboard", element: <Dashboard /> },
+      { path: "/personal-details", element: <PersonalDetails /> },
       
       // ✅ Protect the Dashboard Route
       // {
