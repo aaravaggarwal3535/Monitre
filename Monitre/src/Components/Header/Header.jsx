@@ -1,4 +1,3 @@
-// Header.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase"; // Import auth from firebase
@@ -10,7 +9,7 @@ const Header = ({ user }) => {
   const handleLogout = async () => {
     try {
       await signOut(auth); // Firebase logout
-      navigate("/login"); // Redirect to login page after logout
+      navigate("/"); // Redirect to login page after logout
     } catch (error) {
       console.error("Error signing out: ", error);
     }
