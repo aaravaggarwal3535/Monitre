@@ -1,13 +1,8 @@
-// Dashboard.jsx
 import React from "react";
 import Card from "../Card"; // Import the Card component
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
-  const handleButtonClick = () => {
-    alert("Button clicked!");
-  };
-
   return (
     <>
       <div className="mt-10 px-7 font-bold text-[#04AD83] text-4xl">
@@ -25,30 +20,45 @@ const Dashboard = () => {
                 description="Save today, secure tomorrow—building your future, one step at a time."
               />
             </Link>
+            <Link>
             <Card
               title="Investment"
               description="Invest smart, save big—secure your future with just a click!"
-            />
+              />
+              </Link>
+            <Link>
             <Card
               title="Goals"
               description="Dream big, track your goals, and turn them into reality."
-            />
+              />
+              </Link>
+            <Link>
             <Card
               title="Banking"
               description="Step into the world of easy banking—tap to begin!"
-            />
+              />
+              </Link>
+            <Link>
             <Card
               title="Track"
               description="Keep your progress at your fingertips—track it all with ease!"
-            />
+              />
+              </Link>
+            <Link to={'/personal-details'}>
+            <Card
+              title="Personal Details"
+              description="Details saved by the user."
+              />
+              </Link>
           </div>
         </div>
 
-        {/* Red Box - Contains dummy text */}
-        <div className="bg-red-500 w-1/2 rounded-3xl p-6 flex justify-center items-center">
-          <p className="text-white text-xl font-semibold">
-            This is a red box with some dummy text. Feel free to add more information or modify this content.
-          </p>
+        {/* Image Container (Replacing Red Box) */}
+        <div
+          className="w-1/2 rounded-3xl p-6 flex justify-center items-center bg-cover bg-center"
+          style={{ backgroundImage: "url('/dashboard.svg')" }}
+        >
+          {/* If you want text overlay, you can add it here */}
         </div>
       </div>
     </>
