@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form"
 import { useSelector, useDispatch } from "react-redux"
 import { assignId } from "../../redux/credentials/idSlice";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const {
@@ -14,6 +15,7 @@ const Login = () => {
 
   const dispatch = useDispatch();
   const id = useSelector((state) => state.id.value);
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     let dataSend = await fetch("http://127.0.0.1:3000/login", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify(data) });
@@ -29,7 +31,7 @@ const Login = () => {
 
   useEffect(() => {
     if (id) {
-      window.location.href = "/dashboard";
+      navigate("/dashboard");
     }
   }, [id]);
 

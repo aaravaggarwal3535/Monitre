@@ -1,19 +1,22 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { auth } from "../../firebase"; // Import auth from firebase
-import { signOut } from "firebase/auth";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux"
+import { Link } from "react-router-dom";
 
-const Header = ({ user }) => {
-  const navigate = useNavigate();
+const Header = () => {
+  const id = useSelector((state) => state.id.value);
+  const [response, setResponse] = useState("");
 
-  const handleLogout = async () => {
-    try {
-      await signOut(auth); // Firebase logout
-      navigate("/"); // Redirect to login page after logout
-    } catch (error) {
-      console.error("Error signing out: ", error);
+  const userName = async ()=>{
+    let data = await fetch("http://127.0.0.1:3000/user-name", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify({ id }) });
+    let res = await data.text();
+    setResponse(res);
+  }
+
+  useEffect(() => {
+    if (id) {
+      userName();
     }
-  };
+  }, [id]);
 
   return (
     <nav className="bg-white border-b border-gray-200 fixed w-full z-10">
@@ -26,7 +29,7 @@ const Header = ({ user }) => {
           </div>
 
           <div className="flex items-center space-x-4">
-            {!user ? (
+            {!id ? (
               <>
                 <a
                   href="/login"
@@ -43,17 +46,12 @@ const Header = ({ user }) => {
               </>
             ) : (
               <>
-                <img
-                  src={user.photoURL}
-                  alt="Profile"
-                  className="h-8 w-8 rounded-full"
-                />
-                <button
-                  onClick={handleLogout}
-                  className="bg-red-600 text-white px-4 py-2 rounded-md text-sm"
+                <Link
+                  to="/personal-details"
+                  className="bg-[#04AD83] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700"
                 >
-                  Logout
-                </button>
+                  {response}
+                </Link>
               </>
             )}
           </div>

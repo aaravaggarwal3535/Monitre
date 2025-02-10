@@ -4,6 +4,7 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 import SignupData from './models/SignupData.js'
 import EmailData from './models/emailToIdData.js'
+import UserDetailData from './models/userDetailData.js'
 
 const app = express()
 const port = 3000
@@ -38,6 +39,28 @@ app.post('/login', async (req, res) => {
     else {
         res.send('Login Failed')
     }
+})
+
+app.post('/user-name', async (req, res) => {
+    let id = req.body.id
+    const loginData = await SignupData.find({_id: id})
+    res.send(loginData[0].name)
+})
+
+app.post('/user-details', async (req, res) => {
+    const newUser = await UserDetailData.create(req.body)
+    res.send('User Details Set')
+})
+
+app.post('/personal-details', async (req, res) => {
+    const personalData = await UserDetailData.find({id: req.body.id})
+    res.send(personalData)
+})
+
+app.post('/emna-details', async (req, res) => {
+    const personalData = await SignupData.find({_id: req.body.id})
+    const personalData2 = await {"email": personalData[0].email, "name": personalData[0].name}
+    res.send(personalData2)
 })
 
 app.listen(port, () => {
