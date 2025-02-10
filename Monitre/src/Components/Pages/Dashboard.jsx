@@ -1,8 +1,11 @@
 import React from "react";
 import Card from "../Card"; // Import the Card component
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux"
 
 const Dashboard = () => {
+  const id = useSelector((state) => state.id.value);
+  console.log(id);
   return (
     <>
       <div className="mt-10 px-7 font-bold text-[#04AD83] text-4xl">

@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom"; // ✅ Fix navigation
-import { useForm } from "react-hook-form"
+import { set, useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux"
+import { assignId } from "../../redux/credentials/idSlice";
 
 
 function Signup() {
   const [display, setDisplay] = useState(false);
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -13,6 +17,8 @@ function Signup() {
     setError,
     reset,
   } = useForm()
+
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     let dataSend = await fetch("http://127.0.0.1:3000/signup", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify(data) });
@@ -23,6 +29,19 @@ function Signup() {
     if (response === "User Created") {
       reset();
       setDisplay(true);
+      const loginData = { email: data.email, password: data.password };
+      let loginSend = await fetch("http://127.0.0.1:3000/login", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify(loginData) });
+      let loginResponse = await loginSend.text();
+      if (loginResponse === "Login Failed") {
+        console.log("Login Failed");
+      }
+      else {
+        let userId = JSON.parse(loginResponse)[0].id;
+        dispatch(assignId(userId));
+        setTimeout(() => {
+          navigate("/personal-details-sumbit");
+        }, 500);
+      }
     }
   }
 
@@ -56,8 +75,6 @@ function Signup() {
             className="w-full px-4 py-2 border rounded"
             {...register("password", { required: true, minLength: 6 })}
           />
-          {display && <p className="text-blue-500 font-bold">Sign-up Successfull</p>}
-          {display && <p className="text-blue-500">Go To The Login Page</p>}
           <button
             type="submit"
             className="w-full py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"

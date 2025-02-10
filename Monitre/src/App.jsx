@@ -19,7 +19,7 @@ function App() {
   return (
     <div className='min-h-screen flex flex-wrap content-between'>
       <div className='w-full block'>
-        <Header user={user} /> {/* Pass user to Header */}
+        <Header user={user} /> Pass user to Header
         <main className='flex-grow p-4 bg-white pt-16'>
           <Outlet /> {/* Render nested routes like Home, About, etc. */}
         </main>
