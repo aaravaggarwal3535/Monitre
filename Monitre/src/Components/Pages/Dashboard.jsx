@@ -22,7 +22,7 @@ const Dashboard = () => {
                 description="Save today, secure tomorrow—building your future, one step at a time."
               />
             </Link>
-            <Link>
+            <Link to={'/investment'}>
             <Card
               title="Investment"
               description="Invest smart, save big—secure your future with just a click!"
