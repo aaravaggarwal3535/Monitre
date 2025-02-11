@@ -52,6 +52,12 @@ app.post('/user-details', async (req, res) => {
     res.send('User Details Set')
 })
 
+app.post('/user-details-update', async (req, res) => {
+    console.log(req.body)
+    const newUser = await UserDetailData.updateOne({id: req.body.id}, req.body)
+    res.send('User Details Updated')
+})
+
 app.post('/personal-details', async (req, res) => {
     const personalData = await UserDetailData.find({id: req.body.id})
     res.send(personalData)

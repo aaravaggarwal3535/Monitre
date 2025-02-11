@@ -109,7 +109,7 @@ const PersonalDetailsSumbit = () => {
                         type="submit"
                         className="mt-4 w-full bg-[#04AD83] text-white font-bold py-2 px-4 rounded-lg hover:bg-[#038b66]"
                     >
-                        Save Changes
+                        Save Details
                     </button>
                 </form>
             </div>
