@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form"
 import { useSelector, useDispatch } from "react-redux"
 import { assignId } from "../../redux/credentials/idSlice";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -55,6 +56,12 @@ const Login = () => {
           {errors.email && <p className="text-red-500 font-bold">{errors.email.message}</p>}
           <button className="w-full py-2 px-4 bg-blue-500 text-white rounded">Login</button>
         </form>
+        <p className="mt-4">
+          Dont have an account?{" "}
+          <Link to="/signup" className="text-blue-600 hover:underline">
+            Signup
+          </Link>
+        </p>
       </div>
     </div>
   );

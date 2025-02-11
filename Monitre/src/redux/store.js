@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import  idSlice  from './credentials/idSlice'
+import idSlice from './credentials/idSlice'
 
 export const store = configureStore({
-    reducer: {
-        id: idSlice,
-    },
+  reducer: {
+    id: idSlice,
+  },
 })
