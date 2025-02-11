@@ -12,6 +12,7 @@ import PersonalDetails from "./Components/Pages/PersonalDetails.jsx";
 import { store } from "./redux/store.js";
 import { Provider } from "react-redux";
 import PersonalDetailsSumbit from "./Components/Pages/PersonalDetailsSumbit.jsx";
+import Investment from "./Components/Pages/Investment.jsx";
 // import ProtectedRoute from "./Components/ProtectedRoute.js";
 
 // Router setup
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
       { path: "/dashboard", element: <Dashboard /> },
       { path: "/personal-details", element: <PersonalDetails /> },
       { path: "/personal-details-sumbit", element: <PersonalDetailsSumbit /> },
+      { path: "/investment", element: <Investment /> },
 
       // ✅ Protect the Dashboard Route
       // {
