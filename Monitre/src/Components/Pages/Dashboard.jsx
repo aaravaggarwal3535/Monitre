@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from "react-redux"
 
 const Dashboard = () => {
   const id = useSelector((state) => state.id.value);
-  console.log(id);
   return (
     <>
       <div className="mt-10 px-7 font-bold text-[#04AD83] text-4xl">
