@@ -1,24 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { use } from "react";
+import { useSelector, useDispatch } from "react-redux"
+import { set, useForm } from "react-hook-form"
 
 const PersonalDetails = () => {
-  const [details, setDetails] = useState({
-    name: "",
-    email: "",
-    income: "",
-    expenses: "",
-    savings: "",
-    goals: "",
-  });
+  // fetching details and displaying them in the form
+  const [details, setDetails] = useState({});
+  const [emNa, setEmNa] = useState({});
 
-  const handleChange = (e) => {
-    setDetails({ ...details, [e.target.name]: e.target.value });
-  };
+  const id = useSelector((state) => state.id.value);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("Personal details saved successfully!");
-    console.log("Saved Details:", details);
-  };
+  const fetchDetails = async () => {
+    const data = { id: id };
+    const dataSend = await fetch("http://127.0.0.1:3000/personal-details", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify(data) });
+    const response = await dataSend.text();
+    setDetails(JSON.parse(response)[0]);
+  }
+
+  const fetchEmNa = async ()=>{
+    const data = { id: id };
+    const dataSend = await fetch("http://127.0.0.1:3000/emna-details", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify(data) });
+    const response = await dataSend.text();
+    setEmNa(JSON.parse(response));
+  }
+
+  useEffect(() => {
+    fetchDetails();
+    fetchEmNa();
+  },[id]);
+
+  // updating information to the backend
+  const dispatch = useDispatch();
+    const {
+      register,
+      handleSubmit,
+      watch,
+      formState: { errors },
+      setError,
+      reset,
+    } = useForm()
+
+    const onSubmit = async (data) => {
+        const dataWithId = await { ...data, id };
+        let dataSend = await fetch("http://127.0.0.1:3000/user-details-update", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify(dataWithId) });
+        let response = await dataSend.text();
+        if (response === "User Details Updated") {
+            reset();
+            fetchDetails();
+        }
+      }
 
   return (
     <div className="max-w-2xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
@@ -27,18 +57,14 @@ const PersonalDetails = () => {
       </h1>
 
       {/* Form Start */}
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         {/* Name */}
         <div>
           <label className="block text-gray-700 font-semibold">Name:</label>
           <input
             type="text"
-            name="name"
-            value={details.name}
-            onChange={handleChange}
-            placeholder="Enter your full name"
+            placeholder={emNa.name}
             className="w-full border border-gray-300 p-2 rounded-lg"
-            required
           />
         </div>
 
@@ -46,13 +72,37 @@ const PersonalDetails = () => {
         <div>
           <label className="block text-gray-700 font-semibold">Email:</label>
           <input
-            type="email"
-            name="email"
-            value={details.email}
-            onChange={handleChange}
-            placeholder="Enter your email"
+            type="text"
+            placeholder={emNa.email}
             className="w-full border border-gray-300 p-2 rounded-lg"
-            required
+          />
+        </div>
+
+        {/* Phone */}
+        <div>
+          <label className="block text-gray-700 font-semibold">Phone</label>
+          <input
+            type="number"
+            placeholder={details.phone}
+            className="w-full border border-gray-300 p-2 rounded-lg"
+            {...register("phone", { required: true, min: 1000000000, max: 9999999999 })}
+          />
+        </div>
+
+        {/* PAN */}
+        <div>
+          <label className="block text-gray-700 font-semibold">PAN</label>
+          <input
+            type="text"
+            placeholder={details.pan}
+            className="w-full border border-gray-300 p-2 rounded-lg"
+            {...register("pan", {
+              required: true,
+              pattern: {
+                  value: /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/,
+                  message: "Invalid PAN number format",
+              },
+          })}
           />
         </div>
 
@@ -61,12 +111,9 @@ const PersonalDetails = () => {
           <label className="block text-gray-700 font-semibold">Monthly Income:</label>
           <input
             type="number"
-            name="income"
-            value={details.income}
-            onChange={handleChange}
-            placeholder="Enter your monthly income"
+            placeholder={details.income}
             className="w-full border border-gray-300 p-2 rounded-lg"
-            required
+            {...register("income", { required: true, min: 20000, max: 1000000000 })}
           />
         </div>
 
@@ -75,12 +122,9 @@ const PersonalDetails = () => {
           <label className="block text-gray-700 font-semibold">Monthly Expenses:</label>
           <input
             type="number"
-            name="expenses"
-            value={details.expenses}
-            onChange={handleChange}
-            placeholder="Enter your monthly expenses"
+            placeholder={details.expense}
             className="w-full border border-gray-300 p-2 rounded-lg"
-            required
+            {...register("expense", { required: true, min: 15000, max: 500000000 })}
           />
         </div>
 
@@ -89,12 +133,9 @@ const PersonalDetails = () => {
           <label className="block text-gray-700 font-semibold">Savings:</label>
           <input
             type="number"
-            name="savings"
-            value={details.savings}
-            onChange={handleChange}
-            placeholder="Enter your current savings"
+            placeholder={details.saving}
             className="w-full border border-gray-300 p-2 rounded-lg"
-            required
+            {...register("saving", { required: true, min: 5000, max: 500000000 })}
           />
         </div>
 
@@ -102,12 +143,9 @@ const PersonalDetails = () => {
         <div>
           <label className="block text-gray-700 font-semibold">Financial Goals:</label>
           <textarea
-            name="goals"
-            value={details.goals}
-            onChange={handleChange}
-            placeholder="Enter your financial goals (e.g., Buy a house, Save for a car)"
+            placeholder={details.goals}
             className="w-full border border-gray-300 p-2 rounded-lg"
-            required
+            {...register("goals", { required: true, minLength: 3, maxLength: 10000 })}
           />
         </div>
 
