@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom"; // ✅ Fix navigation
-import { set, useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux"
+import { useDispatch } from "react-redux";
 import { assignId } from "../../redux/credentials/idSlice";
-
 
 function Signup() {
   const [display, setDisplay] = useState(false);
@@ -12,38 +11,48 @@ function Signup() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
     setError,
     reset,
-  } = useForm()
+  } = useForm();
 
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    let dataSend = await fetch("http://127.0.0.1:3000/signup", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify(data) });
-    let response = await dataSend.text();
-    if (response === "Email Existed") {
-      setError("email", { message: "User already exists" });
-    }
-    if (response === "User Created") {
-      reset();
-      setDisplay(true);
-      const loginData = { email: data.email, password: data.password };
-      let loginSend = await fetch("http://127.0.0.1:3000/login", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify(loginData) });
-      let loginResponse = await loginSend.text();
-      if (loginResponse === "Login Failed") {
-        console.log("Login Failed");
+    try {
+      let dataSend = await fetch("http://127.0.0.1:3000/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      let response = await dataSend.text();
+      if (response === "Email Existed") {
+        setError("email", { message: "User already exists" });
       }
-      else {
-        let userId = JSON.parse(loginResponse)[0].id;
-        dispatch(assignId(userId));
-        setTimeout(() => {
-          navigate("/personal-details-sumbit");
-        }, 500);
+      if (response === "User Created") {
+        reset();
+        setDisplay(true);
+        const loginData = { email: data.email, password: data.password };
+        let loginSend = await fetch("http://127.0.0.1:3000/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(loginData),
+        });
+        let loginResponse = await loginSend.text();
+        if (loginResponse === "Login Failed") {
+          console.log("Login Failed");
+        } else {
+          let userId = JSON.parse(loginResponse)[0].id;
+          dispatch(assignId(userId));
+          setTimeout(() => {
+            navigate("/personal-details-sumbit");
+          }, 500);
+        }
       }
+    } catch (error) {
+      console.error("Error during signup or login:", error);
     }
-  }
+  };
 
   return (
     <div className="h-screen flex justify-center items-center bg-gray-100">
