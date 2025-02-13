@@ -126,7 +126,7 @@ const Dashboard = () => {
           <Link to="/savings">
             <Card title="Total Savings" description="Your current savings balance" icon={Wallet} value="₹85,400" trend={12.5} />
           </Link>
-          <Link to="/investments">
+          <Link to="/investment">
             <Card title="Investments" description="Current investment portfolio value" icon={TrendingUp} value="₹1,24,500" trend={-2.3} />
           </Link>
           <Link to="/goals">
