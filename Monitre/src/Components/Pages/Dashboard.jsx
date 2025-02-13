@@ -2,7 +2,32 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux"
+import { GoogleGenerativeAI } from "@google/generative-ai";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import {
+  Wallet,
+  TrendingUp,
+  Target,
+  Moon,
+  Sun,
+  MessageCircle,
+  X,
+  Mic,
+  Send,
+} from "lucide-react";
+import Card from "../Card";
+
+const genAI = new GoogleGenerativeAI("AIzaSyC7958lvH9cC0y4E2qUV26o-0eBmDB1L70");
+const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
 const Dashboard = () => {
   const id = useSelector((state) => state.id.value);
@@ -97,48 +122,16 @@ const Dashboard = () => {
           </button>
         </div>
 
-      {/* Flex container to show the 2 boxes side by side */}
-      <div className="flex gap-6 mt-10">
-        {/* Green Box - Contains all cards */}
-        <div className="bg-green-300 w-1/2 rounded-3xl p-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <Link to={"/"}>
-              <Card
-                title="Savings"
-                description="Save today, secure tomorrow—building your future, one step at a time."
-              />
-            </Link>
-            <Link to={'/investment'}>
-            <Card
-              title="Investment"
-              description="Invest smart, save big—secure your future with just a click!"
-              />
-              </Link>
-            <Link>
-            <Card
-              title="Goals"
-              description="Dream big, track your goals, and turn them into reality."
-              />
-              </Link>
-            <Link>
-            <Card
-              title="Banking"
-              description="Step into the world of easy banking—tap to begin!"
-              />
-              </Link>
-            <Link>
-            <Card
-              title="Track"
-              description="Keep your progress at your fingertips—track it all with ease!"
-              />
-              </Link>
-            <Link to={'/personal-details'}>
-            <Card
-              title="Personal Details"
-              description="Details saved by the user."
-              />
-              </Link>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <Link to="/savings">
+            <Card title="Total Savings" description="Your current savings balance" icon={Wallet} value="₹85,400" trend={12.5} />
+          </Link>
+          <Link to="/investments">
+            <Card title="Investments" description="Current investment portfolio value" icon={TrendingUp} value="₹1,24,500" trend={-2.3} />
+          </Link>
+          <Link to="/goals">
+            <Card title="Goals Progress" description="Track your financial goals" icon={Target} value="68%" trend={5.7} />
+          </Link>
         </div>
 
         <motion.div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
