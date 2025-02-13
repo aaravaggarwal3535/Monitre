@@ -37,7 +37,7 @@ function Home() {
         <div className="flex flex-col md:flex-row gap-8 mt-8 px-10 max-w-7xl mx-auto">
           <motion.div variants={containerVariants} initial="hidden" animate={inView ? "visible" : "hidden"} className="flex flex-col gap-6 md:w-1/2">
             {[{ title: "Stocks & Intraday", icon: TrendingUp }, { title: "Mutual Funds & SIP", icon: PieChart }, { title: "Futures & Options", icon: LineChart }].map((item, index) => (
-              <motion.div key={index} variants={itemVariants} whileHover={{ scale: 1.02 }} className="flex items-center p-6 bg-gradient-to-r from-red-400 to-red-500 rounded-xl shadow-lg text-white cursor-pointer transition-all duration-300">
+              <motion.div key={index} variants={itemVariants} whileHover={{ scale: 1.02 }} className="flex items-center p-6 bg-gradient-to-r from-green-400 to-green-500 rounded-xl shadow-lg text-white cursor-pointer transition-all duration-300">
                 <item.icon className="w-8 h-8 mr-4" />
                 <h3 className="text-xl font-semibold">{item.title}</h3>
               </motion.div>
