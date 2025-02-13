@@ -1,21 +1,115 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React from 'react';
+// import Particles from 'react-tsparticles';
+// import { loadFull } from 'tsparticles';
 
-const notFound = () => {
+const NotFound = () => {
+  // const particlesInit = async (main) => {
+  //   await loadFull(main);
+  // };
+
   return (
-    <section className="flex items-center h-full sm:p-16 dark:bg-gray-50 dark:text-gray-800">
-      <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8 space-y-8 text-center sm:max-w-md">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-40 h-40 dark:text-gray-400">
-          <path fill="currentColor" d="M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16ZM403.078,403.078a207.253,207.253,0,1,1,44.589-66.125A207.332,207.332,0,0,1,403.078,403.078Z"></path>
-          <rect width="176" height="32" x="168" y="320" fill="currentColor"></rect>
-          <polygon fill="currentColor" points="210.63 228.042 186.588 206.671 207.958 182.63 184.042 161.37 162.671 185.412 138.63 164.042 117.37 187.958 141.412 209.329 120.042 233.37 143.958 254.63 165.329 230.588 189.37 251.958 210.63 228.042"></polygon>
-          <polygon fill="currentColor" points="383.958 182.63 360.042 161.37 338.671 185.412 314.63 164.042 293.37 187.958 317.412 209.329 296.042 233.37 319.958 254.63 341.329 230.588 365.37 251.958 386.63 228.042 362.588 206.671 383.958 182.63"></polygon>
-        </svg>
-        <p className="text-3xl">Looks like our services are currently offline</p>
-        <Link to="/"><a rel="noopener noreferrer" href="#" className="px-8 py-3 font-semibold rounded dark:bg-violet-600 dark:text-gray-50">Back to homepage</a></Link>
+    <div className="relative h-screen flex flex-col justify-center items-center text-center text-white bg-gray-700">
+      {/* <Particles
+        id="tsparticles"
+        init={particlesInit}
+        options={{
+          background: {
+            color: {
+              value: '#000',
+            },
+          },
+          fpsLimit: 60,
+          interactivity: {
+            events: {
+              onClick: {
+                enable: true,
+                mode: 'push',
+              },
+              onHover: {
+                enable: true,
+                mode: 'repulse',
+              },
+              resize: true,
+            },
+            modes: {
+              bubble: {
+                distance: 400,
+                duration: 2,
+                opacity: 0.8,
+                size: 40,
+              },
+              push: {
+                quantity: 4,
+              },
+              repulse: {
+                distance: 200,
+                duration: 0.4,
+              },
+            },
+          },
+          particles: {
+            color: {
+              value: '#ffffff',
+            },
+            links: {
+              color: '#ffffff',
+              distance: 150,
+              enable: true,
+              opacity: 0.5,
+              width: 1,
+            },
+            collisions: {
+              enable: true,
+            },
+            move: {
+              direction: 'none',
+              enable: true,
+              outMode: 'bounce',
+              random: false,
+              speed: 2,
+              straight: false,
+            },
+            number: {
+              density: {
+                enable: true,
+                area: 800,
+              },
+              value: 80,
+            },
+            opacity: {
+              value: 0.5,
+            },
+            shape: {
+              type: ['image'],
+              image: [
+                {
+                  src: '/starburst_white_300_drop_2.png',
+                  width: 100,
+                  height: 100,
+                }
+              ],
+            },
+            size: {
+              random: true,
+              value: 5,
+            },
+          },
+          detectRetina: true,
+        }}
+        className="absolute top-0 left-0 w-full h-full"
+      /> */}
+      <h1 className="text-6xl font-bold mb-4">404</h1>
+      <p className="text-2xl mb-2">Sorry, Wrong Door</p>
+      <p className="text-lg mb-4">Don't worry, sometimes even we make mistakes. You can find plenty of other things on our homepage.</p>
+      <a href="/" className="mt-4 px-6 py-3 bg-white text-black rounded-lg hover:bg-gray-200 transition">
+        Back to Homepage
+      </a>
+      <div className="flex justify-center mt-6">
+        <img src='/cat.svg' alt="Cat" className="w-85 mr-4" />
+        <img src='/cup.svg' alt="Cup" className="w-85" />
       </div>
-    </section>
-  )
-}
+    </div>
+  );
+};
 
-export default notFound;
+export default NotFound;

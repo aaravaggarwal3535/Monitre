@@ -34,7 +34,6 @@ const router = createBrowserRouter([
       { path: "/personal-details-sumbit", element: <PersonalDetailsSumbit /> },
       { path: "/investment", element: <Investment /> },
       { path: "/goals", element: <Goals /> },
-      { path: "*", element: <NotFound /> },
       // ✅ Protect the Dashboard Route
       // {
       //   path: "/dashboard",
@@ -46,6 +45,7 @@ const router = createBrowserRouter([
       // },
     ],
   },
+  { path: "*", element: <NotFound /> },
 ]);
 
 // Rendering the app with routing
