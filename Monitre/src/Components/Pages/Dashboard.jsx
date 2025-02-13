@@ -148,9 +148,6 @@ const Dashboard = () => {
           <Link to="/investment">
             <Card title="Investments" description="Current investment portfolio value" icon={TrendingUp} value="₹1,24,500" trend={-2.3} />
           </Link>
-          <Link to="/goals">
-            <Card title="Goals Progress" description="Track your financial goals" icon={Target} value="68%" trend={5.7} />
-          </Link>
         </div>
 
         <motion.div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
