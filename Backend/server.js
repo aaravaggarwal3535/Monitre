@@ -13,9 +13,14 @@ const port = 3000
 app.use(cors())
 app.use(bodyParser.json())
 
+const uri = "mongodb+srv://aaravaggarwal3535:%23hps1935A@monitre.lego8.mongodb.net/?retryWrites=true&w=majority&appName=Monitre"
+
 async function connectDB() {
     try {
-        await mongoose.connect("mongodb://127.0.0.1:27017/UserData")
+        await mongoose.connect(uri, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        })
         console.log("Connected to MongoDB")
     } catch (error) {
         console.error("Error connecting to MongoDB", error)
