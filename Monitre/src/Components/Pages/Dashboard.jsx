@@ -68,13 +68,32 @@ const Dashboard = () => {
 
       try {
         const result = await model.generateContent(input);
+        let aiMessageText = result.response.text().replaceAll("*", "");
+
+        // Check for investment-related keywords
+        const investmentKeywords = ["investment", "invest", "portfolio", "stocks", "bonds"];
+        const isInvestmentRelated = investmentKeywords.some((keyword) =>
+          input.toLowerCase().includes(keyword)
+        );
+
+        if (isInvestmentRelated) {
+          let tempo = aiMessageText;
+          aiMessageText = "Act like a chat bot on a financial app. suggest user to check investment page of our website. dont suggest any other company. give user a final answer instead of saying i cant help you with that. when ever asek who are you than answer that you are a financial chat bot and you are here to help user with their financial queries. answer acoording to previous commands for the query:";
+          aiMessageText += tempo;
+        }
+
         const aiMessage = {
-          text: result.response.text().replaceAll("*", ""),
+          text: aiMessageText,
           sender: "bot",
         };
         setMessages((prevMessages) => [...prevMessages, aiMessage]);
       } catch (error) {
         console.error("Error fetching AI response:", error);
+        const fallbackMessage = {
+          text: "I'm sorry, I couldn't process your request. Please try again.",
+          sender: "bot",
+        };
+        setMessages((prevMessages) => [...prevMessages, fallbackMessage]);
       }
     }
   };
