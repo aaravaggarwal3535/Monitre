@@ -12,14 +12,14 @@ const PersonalDetails = () => {
 
   const fetchDetails = async () => {
     const data = { id: id };
-    const dataSend = await fetch("http://127.0.0.1:3000/personal-details", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify(data) });
+    const dataSend = await fetch("https://monitre-backend.vercel.app/personal-details", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify(data) });
     const response = await dataSend.text();
     setDetails(JSON.parse(response)[0]);
   }
 
   const fetchEmNa = async ()=>{
     const data = { id: id };
-    const dataSend = await fetch("http://127.0.0.1:3000/emna-details", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify(data) });
+    const dataSend = await fetch("https://monitre-backend.vercel.app/emna-details", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify(data) });
     const response = await dataSend.text();
     setEmNa(JSON.parse(response));
   }

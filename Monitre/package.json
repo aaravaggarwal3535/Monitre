@@ -1,5 +1,6 @@
 {
   "name": "monitre",
+  "homepage": "https://aaravaggarwal3535.github.io/Monitre-deploy/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +8,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
@@ -18,6 +21,7 @@
     "emailjs-com": "^3.2.0",
     "firebase": "^11.2.0",
     "framer-motion": "^12.4.2",
+    "gh-pages": "^6.3.0",
     "html-react-parser": "^5.2.2",
     "lucide-react": "^0.475.0",
     "postcss": "^8.5.1",
