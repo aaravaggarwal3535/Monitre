@@ -104,9 +104,8 @@ const Dashboard = () => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className={`${
-        darkMode ? "bg-gray-900 text-white" : "bg-gray-50 text-black"
-      } min-h-screen transition-colors duration-200`}
+      className={`${darkMode ? "bg-gray-900 text-white" : "bg-gray-50 text-black"
+        } min-h-screen transition-colors duration-200`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex justify-between items-center mb-8">
@@ -126,7 +125,7 @@ const Dashboard = () => {
           <Link to="/savings">
             <Card title="Total Savings" description="Your current savings balance" icon={Wallet} value="₹85,400" trend={12.5} />
           </Link>
-          <Link to="/investments">
+          <Link to="/investment">
             <Card title="Investments" description="Current investment portfolio value" icon={TrendingUp} value="₹1,24,500" trend={-2.3} />
           </Link>
           <Link to="/goals">
@@ -150,8 +149,8 @@ const Dashboard = () => {
           </div>
         </motion.div>
 
-          {/* AI Chat Button */}
-          <motion.button
+        {/* AI Chat Button */}
+        <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={() => setIsChatOpen(!isChatOpen)}
@@ -178,11 +177,10 @@ const Dashboard = () => {
               {messages.map((message, index) => (
                 <div
                   key={index}
-                  className={`p-3 rounded-lg max-w-[80%] ${
-                    message.sender === "user"
+                  className={`p-3 rounded-lg max-w-[80%] ${message.sender === "user"
                       ? "bg-[#04AD83] text-white ml-auto"
                       : "bg-gray-100 text-gray-800"
-                  }`}
+                    }`}
                 >
                   {message.text}
                 </div>
@@ -199,9 +197,8 @@ const Dashboard = () => {
                 />
                 <button
                   onClick={startListening}
-                  className={`p-2 rounded-full ${
-                    listening ? "bg-red-500" : "bg-gray-200"
-                  }`}
+                  className={`p-2 rounded-full ${listening ? "bg-red-500" : "bg-gray-200"
+                    }`}
                 >
                   <Mic className="w-5 h-5 text-gray-600" />
                 </button>
