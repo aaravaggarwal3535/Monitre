@@ -1,88 +1,21 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import Particles from "react-tsparticles";
-import { loadFull } from "tsparticles";
+import React from 'react'
+import { Link } from 'react-router-dom';
 
-const NotFound = () => {
-  const particlesInit = async (main) => {
-    await loadFull(main);
-  };
-
+const notFound = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white relative">
-      {/* Particles Background */}
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        options={{
-          particles: {
-            number: {
-              value: 350,
-              density: { enable: true, value_area: 600 },
-            },
-            color: { value: "#ffffff" },
-            shape: {
-              type: "image",
-              stroke: { width: 2, color: "#fff" },
-              polygon: { nb_sides: 6 },
-              image: {
-                src: "images/starburst_white_300_drop_2.png",
-                width: 10,
-                height: 10,
-              },
-            },
-            opacity: { value: 0.5 },
-            size: { value: 5, random: true },
-            line_linked: { enable: false },
-            move: {
-              enable: true,
-              speed: { min: 1, max: 3 },
-              direction: "bottom",
-              out_mode: "out",
-            },
-          },
-          interactivity: {
-            events: {
-              onhover: { enable: true, mode: "bubble" },
-              onclick: { enable: true, mode: "repulse" },
-              resize: true,
-            },
-            modes: {
-              bubble: { distance: 200, size: 33, duration: 2, opacity: 6, speed: 2 },
-              repulse: { distance: 200, duration: 0.25 },
-            },
-          },
-          retina_detect: true,
-        }}
-        className="absolute top-0 left-0 w-full h-full"
-      />
-
-      <div className="flex flex-col md:flex-row items-center z-10 p-6">
-        {/* Images */}
-        <div className="flex flex-col items-center">
-          <img src="/images/cup.svg" alt="Cup" className="w-24 mb-4" />
-          <img src="/images/cat.svg" alt="Cat" className="w-40" />
-        </div>
-
-        {/* Text Content */}
-        <div className="text-center md:text-left md:ml-8">
-          <h2 className="text-6xl font-bold text-[#04AD83]">404</h2>
-          <h3 className="text-2xl font-semibold mt-2">Sorry, Wrong Door.</h3>
-          <p className="mt-4 text-gray-300">
-            Don't worry, sometimes even we make mistakes. You can find plenty of
-            other things on our homepage.
-          </p>
-
-          {/* Back Button */}
-          <Link to="/">
-            <button className="mt-6 px-6 py-3 bg-[#04AD83] text-white rounded-lg hover:bg-green-600 transition">
-              Back to Homepage
-            </button>
-          </Link>
-        </div>
+    <section className="flex items-center h-full sm:p-16 dark:bg-gray-50 dark:text-gray-800">
+      <div className="container flex flex-col items-center justify-center px-5 mx-auto my-8 space-y-8 text-center sm:max-w-md">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="w-40 h-40 dark:text-gray-400">
+          <path fill="currentColor" d="M256,16C123.452,16,16,123.452,16,256S123.452,496,256,496,496,388.548,496,256,388.548,16,256,16ZM403.078,403.078a207.253,207.253,0,1,1,44.589-66.125A207.332,207.332,0,0,1,403.078,403.078Z"></path>
+          <rect width="176" height="32" x="168" y="320" fill="currentColor"></rect>
+          <polygon fill="currentColor" points="210.63 228.042 186.588 206.671 207.958 182.63 184.042 161.37 162.671 185.412 138.63 164.042 117.37 187.958 141.412 209.329 120.042 233.37 143.958 254.63 165.329 230.588 189.37 251.958 210.63 228.042"></polygon>
+          <polygon fill="currentColor" points="383.958 182.63 360.042 161.37 338.671 185.412 314.63 164.042 293.37 187.958 317.412 209.329 296.042 233.37 319.958 254.63 341.329 230.588 365.37 251.958 386.63 228.042 362.588 206.671 383.958 182.63"></polygon>
+        </svg>
+        <p className="text-3xl">Looks like our services are currently offline</p>
+        <Link to="/"><a rel="noopener noreferrer" href="#" className="px-8 py-3 font-semibold rounded dark:bg-violet-600 dark:text-gray-50">Back to homepage</a></Link>
       </div>
-    </div>
-  );
-};
+    </section>
+  )
+}
 
-export default NotFound;
+export default notFound;

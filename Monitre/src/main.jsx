@@ -14,6 +14,7 @@ import { Provider } from "react-redux";
 import PersonalDetailsSumbit from "./Components/Pages/PersonalDetailsSumbit.jsx";
 import Investment from "./Components/Pages/Investment.jsx";
 import Goals from "./Components/Pages/Goals.jsx";
+import Savings from "./Components/Pages/Savings.jsx";
 import NotFound from "./Components/Pages/notFound.jsx";
 // import ProtectedRoute from "./Components/ProtectedRoute.js";
 
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/login", element: <Login /> },
+      { path: "/savings", element: <Savings /> },
       { path: "/signup", element: <Signup /> },
       { path: "/confirm-email", element: <ConfirmEmail /> },
       { path: "/dashboard", element: <Dashboard /> },
@@ -32,7 +34,7 @@ const router = createBrowserRouter([
       { path: "/personal-details-sumbit", element: <PersonalDetailsSumbit /> },
       { path: "/investment", element: <Investment /> },
       { path: "/goals", element: <Goals /> },
-      { path: "*", element: <NotFound/> },
+      { path: "*", element: <NotFound /> },
       // ✅ Protect the Dashboard Route
       // {
       //   path: "/dashboard",
