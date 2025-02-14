@@ -18,7 +18,7 @@ const PersonalDetailsSumbit = () => {
 
     const onSubmit = async (data) => {
         const dataWithId = await { ...data, id };
-        let dataSend = await fetch("https://monitre-backend.vercel.app/user-details", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify(dataWithId) });
+        let dataSend = await fetch("http://localhost:3000/user-details", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify(dataWithId) });
         let response = await dataSend.text();
         if (response === "User Details Set") {
             reset();

@@ -19,7 +19,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    let dataSend = await fetch("https://monitre-backend.vercel.app/login", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify(data) });
+    let dataSend = await fetch("http://localhost:3000/login", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify(data) });
     let response = await dataSend.text();
     if (response === "Login Failed") {
       setError("email", { message: "Either email or password is wrong" });
