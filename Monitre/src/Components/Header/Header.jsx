@@ -10,7 +10,7 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const userName = async () => {
-    let data = await fetch("http://localhost:3000/user-name", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify({ id }) });
+    let data = await fetch("https://monitre-backend.onrender.com/user-name", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify({ id }) });
     let res = await data.text();
     setResponse(res);
   }

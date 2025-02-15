@@ -10,7 +10,7 @@ function Savings() {
   useEffect(() => {
     // Fetch savings data from the backend
     const fetchSavingsData = async () => {
-      const response = await fetch('http://localhost:3000/fetch-savings', {
+      const response = await fetch('https://monitre-backend.onrender.com/fetch-savings', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id }),
@@ -29,7 +29,7 @@ function Savings() {
 
   const handleAddSaving = async (e) => {
     e.preventDefault();
-    const response = await fetch('http://localhost:3000/savings', {
+    const response = await fetch('https://monitre-backend.onrender.com/savings', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...newSaving, id }),

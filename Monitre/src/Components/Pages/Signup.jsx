@@ -20,7 +20,7 @@ function Signup() {
 
   const onSubmit = async (data) => {
     try {
-      let dataSend = await fetch("http://localhost:3000/signup", {
+      let dataSend = await fetch("https://monitre-backend.onrender.com/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
@@ -33,7 +33,7 @@ function Signup() {
         reset();
         setDisplay(true);
         const loginData = { email: data.email, password: data.password };
-        let loginSend = await fetch("http://localhost:3000/login", {
+        let loginSend = await fetch("https://monitre-backend.onrender.com/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(loginData),

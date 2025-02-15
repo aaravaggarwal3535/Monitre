@@ -143,14 +143,14 @@ const Dashboard = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <Link to="/savings">
-            <Card title="Total Savings" description="Your current savings balance" icon={Wallet} value="₹85,400" trend={12.5} />
+            <Card darkMode = {darkMode} title="Total Savings" description="Your current savings balance" icon={Wallet} value="₹85,400" trend={12.5} />
           </Link>
           <Link to="/investment">
-            <Card title="Investments" description="Current investment portfolio value" icon={TrendingUp} value="₹1,24,500" trend={-2.3} />
+            <Card darkMode = {darkMode} title="Investments" description="Current investment portfolio value" icon={TrendingUp} value="₹1,24,500" trend={-2.3} />
           </Link>
         </div>
 
-        <motion.div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
+        <motion.div className={darkMode?"bg-black text-white rounded-2xl shadow-lg p-6 mb-8":"bg-white text-black rounded-2xl shadow-lg p-6 mb-8"}>
           <h2 className="text-2xl font-semibold mb-6">Investment & Savings Tracking</h2>
           <div className="h-[400px]">
             <ResponsiveContainer width="100%" height="100%">
