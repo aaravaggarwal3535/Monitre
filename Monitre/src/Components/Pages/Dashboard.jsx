@@ -151,7 +151,7 @@ const Dashboard = () => {
         </div>
 
         <motion.div className={darkMode?"bg-black text-white rounded-2xl shadow-lg p-6 mb-8":"bg-white text-black rounded-2xl shadow-lg p-6 mb-8"}>
-          <h2 className="text-2xl font-semibold mb-6">Investment & Savings Tracking</h2>
+          <h2 className="text-2xl font-semibold mb-6">Real-Time Financial Insights: Live Graph Updates</h2>
           <div className="h-[400px]">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={chartData}>

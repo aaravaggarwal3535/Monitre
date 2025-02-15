@@ -9,8 +9,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "host": "vite --host"
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",

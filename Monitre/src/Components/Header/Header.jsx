@@ -39,7 +39,7 @@ const Header = () => {
             {!id ? ("") : (
               <Link
                 to="/dashboard"
-                className="bg-[#04AD83] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700"
+                className="bg-[#04AD83] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 mr-1"
               >
                 Dashboard
               </Link>
