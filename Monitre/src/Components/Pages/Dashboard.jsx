@@ -82,6 +82,9 @@ const Dashboard = () => {
           aiMessageText += tempo;
         }
 
+        // Limit the response to 50 words
+        aiMessageText = aiMessageText.split(" ").slice(0, 50).join(" ");
+
         const aiMessage = {
           text: aiMessageText,
           sender: "bot",
