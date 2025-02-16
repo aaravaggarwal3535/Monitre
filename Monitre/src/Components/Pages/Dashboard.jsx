@@ -78,12 +78,9 @@ const Dashboard = () => {
 
         if (isInvestmentRelated) {
           let tempo = aiMessageText;
-          aiMessageText = "Act like a chat bot on a financial app. suggest user to check investment page of our website. dont suggest any other company. give user a final answer instead of saying i cant help you with that. when ever asek who are you than answer that you are a financial chat bot and you are here to help user with their financial queries. give answers in 50 words. answer acoording to previous commands for the query:";
+          aiMessageText = "Act like a chat bot on a financial app. suggest user to check investment page of our website. dont suggest any other company. give user a final answer instead of saying i cant help you with that. when ever asek who are you than answer that you are a financial chat bot and you are here to help user with their financial queries. answer acoording to previous commands for the query:";
           aiMessageText += tempo;
         }
-
-        // Limit the response to 50 words
-        aiMessageText = aiMessageText.split(" ").slice(0, 50).join(" ");
 
         const aiMessage = {
           text: aiMessageText,
