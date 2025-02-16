@@ -13,6 +13,9 @@ import { store } from "./redux/store.js";
 import { Provider } from "react-redux";
 import PersonalDetailsSumbit from "./Components/Pages/PersonalDetailsSumbit.jsx";
 import Investment from "./Components/Pages/Investment.jsx";
+import Goals from "./Components/Pages/Goals.jsx";
+import Savings from "./Components/Pages/Savings.jsx";
+import NotFound from "./Components/Pages/notFound.jsx";
 // import ProtectedRoute from "./Components/ProtectedRoute.js";
 import YourGoals from "./Components/Pages/YourGoals.jsx";
 import Savings from "./Components/Pages/Savings.jsx";
@@ -25,15 +28,20 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/login", element: <Login /> },
+      { path: "/savings", element: <Savings /> },
       { path: "/signup", element: <Signup /> },
       { path: "/confirm-email", element: <ConfirmEmail /> },
       { path: "/dashboard", element: <Dashboard /> },
       { path: "/personal-details", element: <PersonalDetails /> },
       { path: "/personal-details-sumbit", element: <PersonalDetailsSumbit /> },
       { path: "/investment", element: <Investment /> },
+<<<<<<< HEAD
+      { path: "/goals", element: <Goals /> },
+=======
       { path: "/goals", element: <YourGoals /> },
       { path: "/savings", element: <Savings /> },
 
+>>>>>>> 159459f0b7b792c01c253684407fbff65ce984f1
       // ✅ Protect the Dashboard Route
       // {
       //   path: "/dashboard",
@@ -45,6 +53,7 @@ const router = createBrowserRouter([
       // },
     ],
   },
+  { path: "*", element: <NotFound /> },
 ]);
 
 // Rendering the app with routing
