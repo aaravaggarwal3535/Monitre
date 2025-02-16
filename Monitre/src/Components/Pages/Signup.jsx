@@ -46,7 +46,7 @@ function Signup() {
           dispatch(assignId(userId));
           setTimeout(() => {
             navigate("/personal-details-sumbit");
-          }, 500);
+          },0);
         }
       }
     } catch (error) {
