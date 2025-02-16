@@ -68,13 +68,32 @@ const Dashboard = () => {
 
       try {
         const result = await model.generateContent(input);
+        let aiMessageText = result.response.text().replaceAll("*", "");
+
+        // Check for investment-related keywords
+        const investmentKeywords = ["investment", "invest", "portfolio", "stocks", "bonds"];
+        const isInvestmentRelated = investmentKeywords.some((keyword) =>
+          input.toLowerCase().includes(keyword)
+        );
+
+        if (isInvestmentRelated) {
+          let tempo = aiMessageText;
+          aiMessageText = "Act like a chat bot on a financial app. suggest user to check investment page of our website. dont suggest any other company. give user a final answer instead of saying i cant help you with that. when ever asek who are you than answer that you are a financial chat bot and you are here to help user with their financial queries. answer acoording to previous commands for the query:";
+          aiMessageText += tempo;
+        }
+
         const aiMessage = {
-          text: result.response.text().replaceAll("*", ""),
+          text: aiMessageText,
           sender: "bot",
         };
         setMessages((prevMessages) => [...prevMessages, aiMessage]);
       } catch (error) {
         console.error("Error fetching AI response:", error);
+        const fallbackMessage = {
+          text: "I'm sorry, I couldn't process your request. Please try again.",
+          sender: "bot",
+        };
+        setMessages((prevMessages) => [...prevMessages, fallbackMessage]);
       }
     }
   };
@@ -123,18 +142,22 @@ const Dashboard = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
           <Link to="/savings">
-            <Card title="Total Savings" description="Your current savings balance" icon={Wallet} value="₹85,400" trend={12.5} />
+            <Card darkMode = {darkMode} title="Total Savings" description="Your current savings balance" icon={Wallet} value="₹85,400" trend={12.5} />
           </Link>
           <Link to="/investment">
+<<<<<<< HEAD
             <Card title="Investments" description="Current investment portfolio value" icon={TrendingUp} value="₹1,24,500" trend={-2.3} />
           </Link>
           <Link to="/goals">
             <Card title="Goals Progress" description="Track your financial goals" icon={Target} value="68%" trend={5.7} />
+=======
+            <Card darkMode = {darkMode} title="Investments" description="Current investment portfolio value" icon={TrendingUp} value="₹1,24,500" trend={-2.3} />
+>>>>>>> 159459f0b7b792c01c253684407fbff65ce984f1
           </Link>
         </div>
 
-        <motion.div className="bg-white rounded-2xl shadow-lg p-6 mb-8">
-          <h2 className="text-2xl font-semibold mb-6">Investment & Savings Tracking</h2>
+        <motion.div className={darkMode?"bg-black text-white rounded-2xl shadow-lg p-6 mb-8":"bg-white text-black rounded-2xl shadow-lg p-6 mb-8"}>
+          <h2 className="text-2xl font-semibold mb-6">Real-Time Financial Insights: Live Graph Updates</h2>
           <div className="h-[400px]">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={chartData}>

@@ -10,7 +10,7 @@ const Header = () => {
   const dispatch = useDispatch();
 
   const userName = async () => {
-    let data = await fetch("http://127.0.0.1:3000/user-name", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify({ id }) });
+    let data = await fetch("https://monitre-backend.onrender.com/user-name", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify({ id }) });
     let res = await data.text();
     setResponse(res);
   }
@@ -39,7 +39,7 @@ const Header = () => {
             {!id ? ("") : (
               <Link
                 to="/dashboard"
-                className="bg-[#04AD83] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700"
+                className="bg-[#04AD83] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-green-700 mr-1"
               >
                 Dashboard
               </Link>

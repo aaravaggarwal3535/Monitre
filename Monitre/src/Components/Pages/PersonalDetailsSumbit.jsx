@@ -18,7 +18,7 @@ const PersonalDetailsSumbit = () => {
 
     const onSubmit = async (data) => {
         const dataWithId = await { ...data, id };
-        let dataSend = await fetch("http://127.0.0.1:3000/user-details", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify(dataWithId) });
+        let dataSend = await fetch("https://monitre-backend.onrender.com/user-details", { method: "POST", headers: { "Content-Type": "application/json", }, body: JSON.stringify(dataWithId) });
         let response = await dataSend.text();
         if (response === "User Details Set") {
             reset();
